@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
-        body: screens[3],
+        body: screens[_currentPageIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentPageIndex,
           onTap: (value) {
