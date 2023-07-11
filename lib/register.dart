@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:layout_app/home.dart';
-import 'package:layout_app/register.dart';
+import 'package:layout_app/login.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  var loginFormKey = GlobalKey<FormState>();
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
+    var registerFormKey = GlobalKey<FormState>();
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Form(
-                key: loginFormKey,
+                key: registerFormKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -63,15 +63,38 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 20,
                     ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Confirm password',
+                        hintText: 'Re-enter your password',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter your password";
+                        } else if (value.length < 8) {
+                          return "Not a valid password";
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green.shade400,
+                      ),
                       onPressed: () {
-                        if (loginFormKey.currentState!.validate()) {
+                        if (registerFormKey.currentState!.validate()) {
                           Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => const HomePage()));
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
+                          );
                         }
                       },
-                      child: const Text('Login'),
+                      child: const Text('Register'),
                     ),
                     const SizedBox(
                       height: 15,
@@ -79,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?"),
+                        const Text("Already have an account?"),
                         const SizedBox(
                           width: 5,
                         ),
@@ -87,12 +110,12 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => const RegisterPage(),
+                                builder: (context) => const LoginPage(),
                               ),
                             );
                           },
                           child: Text(
-                            "Register",
+                            "Login",
                             style: TextStyle(
                               color: Colors.amber.shade700,
                             ),

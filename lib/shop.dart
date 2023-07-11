@@ -85,8 +85,8 @@ class _ShopPageState extends State<ShopPage> {
             ),
           ),
           ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemCount: entries.length,
+              physics: const BouncingScrollPhysics(),
+              itemCount: 7,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text('${index + 1} ${entries[index]['product']}'),
