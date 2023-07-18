@@ -20,7 +20,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   int _currentPageIndex = 0;
-  List<Widget> screens = [HomePage(), ShopPage(), ProfilePage(), TestPage()];
+  List<Widget> screens = const [
+    HomePage(),
+    ShopPage(),
+    ProfilePage(),
+    TestPage()
+  ];
 
   @override
   Widget build(BuildContext context) {
